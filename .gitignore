@@ -1,3 +1,7 @@
 # Data Files #
 ##############
 data/
+
+# mac nonsense #
+################
+.DS_Store
