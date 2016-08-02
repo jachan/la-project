@@ -27,7 +27,7 @@ LA_volume = c(115,2647,5494,2541,909,1110,1622,697,330,2291)
 mean_EW = c(mean(brains[["TKA011"]]$edge.weight),mean(brains[["TKA013"]]$edge.weight),mean(brains[["TKA021"]]$edge.weight),mean(brains[["TKA028"]]$edge.weight),mean(brains[["TKA054"]]$edge.weight),mean(brains[["TKA068"]]$edge.weight),mean(brains[["TKA076"]]$edge.weight),mean(brains[["TKA084"]]$edge.weight),mean(brains[["TKA094"]]$edge.weight),mean(brains[["TKA098"]]$edge.weight))
 
 plot(LA_volume, mean_EW, main = "Mean Edge Weight vs Leukoaraiosis Volume", xlab = "Volume of Leukoariosis (mm^3)", ylab = "Mean Edge Weight", pch = 19)
-abline(lm(mean_EW~LA_volume), col="red") # regression line (y~x) 
+abline(lm(mean_EW~LA_volume), col="red")
 
 mean_EW.lm = lm(LA_volume ~ mean_EW)
 summary(mean_EW.lm)$r.squared	
@@ -82,12 +82,13 @@ for(i in 1:length(node_weights[1,])){
     #print(paste(name, NW_cor))
     #plot(LA_volume, node_weights[,name], main = paste("Node Strength vs Leukoaraiosis Volume for Node",name), xlab = "Volume of Leukoaraiosis (mm^3)", ylab = "Node Strength")
   }
-  if(abs(ND_cor) >= .37){
-    #print(paste(name, ND_cor))
-    #plot(LA_volume, node_degrees[,name], main = paste("Node Degree vs Leukoaraiosis Volume for Node",name), xlab = "Volume of Leukoaraiosis (mm^3)", ylab = "Node Strength")
+  if(ND_cor <= -.37){
+    print(paste(name, ND_cor))
+    #plot(LA_volume, node_degrees[,name], main = paste("Node Degree vs Leukoaraiosis Volume for Node",name), xlab = "Volume of Leukoaraiosis (mm^3)", ylab = "Node Degree")
   }
 }
-
+plot(LA_volume, node_degrees[,"54"], main = paste("Node Degree vs Leukoaraiosis Volume for Node",name), xlab = expression('Volume of Leukoaraiosis in mm' ^ 3 ), ylab = "Node Degree")
+abline(lm(node_degrees[,"54"]~LA_volume), col="red")
 hist(NW_values, main = "R Values for Node Strength vs LA Volume", xlab = "Correlation Coefficient", ylab = "Number of Nodes")
 hist(ND_values, main = "R Values for Node Degree vs LA Volume", xlab = "Correlation Coefficient", ylab = "Number of Nodes")
 
