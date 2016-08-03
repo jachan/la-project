@@ -15,7 +15,7 @@ echo "${pre}"
 
 cd /export/higgs/john.chan/LA_brains/${pre}/
 #create density mask
-track_density_mask ${pre}_network.csv.trk LA_mask_diff.nii ${pre}_networkDenMask.nii
+track_density_mask ${pre}_network.csv.trk /export/higgs/PriceLabCollaboration/PriceLabReprocess/TKA_sub/Interpolated/${pre}/IMAGERY/${pre}_FA.nii.gz ${pre}_networkDenMask.nii
 
 #binarize LA_mask and density mask
 fslmaths ${pre}_networkDenMask.nii -bin ${pre}_networkDenMask_bin.nii
