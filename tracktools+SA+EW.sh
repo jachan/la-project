@@ -19,7 +19,7 @@ rm /export/higgs/john.chan/LA_brains/${pre}/track_${pre}.trk.seeds
 echo "finished track_network" | tee -a ~/status.txt
 echo
 #finds surface area
-cd ~/scripts/surfaceArea/
+cd /export/faraday/john.chan/scripts/surfaceArea/
 idl -e "node_surface_area" -args /export/higgs/john.chan/LA_brains/${pre}/82ROI.nii.gz /export/higgs/john.chan/LA_brains/${pre}/surface_area.csv
 echo "finished surface area" | tee -a ~/status.txt
 echo
